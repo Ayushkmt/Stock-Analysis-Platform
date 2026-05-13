@@ -35,7 +35,7 @@ def fetch_stock_data(ticker: str, period_days: int = 365) -> pd.DataFrame:
         df['Date'] = pd.to_datetime(df['Date']).dt.tz_localize(None)
 
         return df
-
+    
     except Exception as e:
         print(f"Error fetching data for {ticker}: {e}")
         return pd.DataFrame()
