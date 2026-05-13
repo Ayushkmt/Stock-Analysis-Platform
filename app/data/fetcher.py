@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 
-def fetch_stock_data(ticker: str, period_days: int = 365) -> pd.DataFrame:
+def fetch_stock_data(ticker: str, period_days: int = 1825) -> pd.DataFrame:
     """
     Fetch historical stock data from Yahoo Finance.
 
@@ -39,4 +39,5 @@ def fetch_stock_data(ticker: str, period_days: int = 365) -> pd.DataFrame:
     except Exception as e:
         print(f"Error fetching data for {ticker}: {e}")
         return pd.DataFrame()
+    
     
