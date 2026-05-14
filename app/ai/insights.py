@@ -19,13 +19,13 @@ def build_Prompt(Ticker, current_price, rsi, macd, forecast_price, feature_impor
     """
     return prompt
 
-def generate_insight(ticker, current_price, rsi, macd, forecast_price, feature_importance):
+def generate_insights(ticker, current_price, rsi, macd, forecast_price, feature_importance):
     """
     Generates AI market insights.
     Currently returns a mock response.
     Gemini API will be swapped in here later — one function change.
     """
-    prompt = build_prompt(ticker, current_price, rsi, macd, forecast_price, feature_importance)
+    prompt = build_Prompt(ticker, current_price, rsi, macd, forecast_price, feature_importance)
 
     # --- MOCK RESPONSE (Gemini swap goes here later) ---
     mock_response = f"""
@@ -44,6 +44,7 @@ def generate_insight(ticker, current_price, rsi, macd, forecast_price, feature_i
     constitute financial advice. Stock markets are inherently unpredictable. 
     Always do your own research before making investment decisions.
     """
-    return 
+    return mock_response
+
 
 
