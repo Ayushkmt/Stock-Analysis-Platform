@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 
 def plot_candlestick(df, ticker):
-    """Candlestick chart showing Open, High, Low, Close prices."""
+    """Candlestick chart with SMA overlays."""
     fig = go.Figure(data=[go.Candlestick(
         x=df['Date'],
         open=df['Open'],
@@ -11,14 +11,31 @@ def plot_candlestick(df, ticker):
         name=ticker
     )])
 
+    # SMA 20 overlay
+    fig.add_trace(go.Scatter(
+        x=df['Date'],
+        y=df['SMA_20'],
+        name='SMA 20',
+        line=dict(color='orange', width=1.5)
+    ))
+
+    # SMA 50 overlay
+    fig.add_trace(go.Scatter(
+        x=df['Date'],
+        y=df['SMA_50'],
+        name='SMA 50',
+        line=dict(color='blue', width=1.5)
+    ))
+
     fig.update_layout(
-        title=f'{ticker} - Price Chart',
-        yaxis_title='Price (₹)',
-        xaxis_title='Date',
-        xaxis_rangeslider_visible=False,  # cleaner look without range slider
-        template='plotly_dark',
-        height=500
+        title=f"{ticker} - Price Chart with Moving Averages",
+        xaxis_title="Date",
+        yaxis_title="Price (₹)",
+        xaxis_rangeslider_visible=False,
+        template="plotly_dark",
+        legend=dict(orientation="h", yanchor="bottom", y=1.02)
     )
+
     return fig
 
 def plot_rsi(df):

@@ -9,8 +9,14 @@ st.set_page_config(page_title="Stock Analysis Platform", layout="wide")
 
 st.title("📈 Stock Analysis Platform")
 st.sidebar.header("Configuration")
+st.sidebar.subheader("Quick Select")
+quick_select = st.sidebar.selectbox(
+    "Popular Indian Stocks",
+    ["RELIANCE.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS", "WIPRO.NS", "ADANIENT.NS", "BAJFINANCE.NS"]
+)
 
-ticker = st.sidebar.text_input("Enter Stock Ticker", value="RELIANCE.NS")
+st.sidebar.subheader("Or Enter Manually")
+ticker = st.sidebar.text_input("Stock Ticker", value=quick_select)
 period_days = st.sidebar.slider("Historical Data Period (days)", min_value=365, max_value=3650, value=1825, step=365)
 analyse_button = st.sidebar.button("Analyse Stock")
 
@@ -34,15 +40,31 @@ if analyse_button:
             # --- Metrics Row ---
             col1, col2, col3 = st.columns(3)
 
-            with col1:
-                st.metric("Current Price", f"₹{df['Close'].iloc[-1]:.2f}")
+            current_price = df['Close'].iloc[-1]
+            previous_price = df['Close'].iloc[-2]
+            price_delta = current_price - previous_price
 
+            with col1:
+                st.metric(
+                    "Current Price",
+                    f"₹{current_price:.2f}",
+                    delta=f"₹{price_delta:.2f} from yesterday"
+            )
+            
             with col2:
                 st.metric("Forecast Price", f"₹{forecast_price:.2f}")
 
-            with col3:
-                st.metric("RSI", f"{df['RSI'].iloc[-1]:.2f}")
+            rsi_value = df['RSI'].iloc[-1]
+            if rsi_value > 70:
+                rsi_label = "Overbought 🔴"
+            elif rsi_value < 30:
+                rsi_label = "Oversold 🟢"
+            else:
+                rsi_label = "Neutral 🟡"
 
+            with col3:
+                st.metric("RSI", f"{rsi_value:.2f}", delta=rsi_label)
+                
             # --- Charts ---
             st.subheader("📊 Price Chart")
             st.plotly_chart(plot_candlestick(df, ticker), use_container_width=True)
@@ -66,14 +88,28 @@ if analyse_button:
             st.markdown(insights)
 
             # --- Feature Importance ---
-            st.subheader("🔍 Why This Trend?")
+            st.subheader("Why This Trend?")
             st.bar_chart(result['feature_importance'])
 
             # --- Model Performance ---
-            st.caption(f"Model MAE: ₹{result['mae']} | R²: {result['r2']} | Data points: {len(df)}")
+            r2 = result['r2']
+            if r2 > 0.8:
+                model_quality = "Strong 🟢"
+            elif r2 > 0.5:
+                model_quality = "Moderate 🟡"
+            else:
+                model_quality = "Weak 🔴"
+                
+            st.caption(
+                f"Model Accuracy: {model_quality} | "
+                f"MAE: ₹{result['mae']} | "
+                f"R²: {result['r2']} | "
+                f"Data points: {len(df)}"
+                )
 
             # --- Disclaimer ---
             st.warning("⚠️ This platform is for educational purposes only. Not a financial advice. Always do your own research.")
+            
             
             
             
