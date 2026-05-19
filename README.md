@@ -10,7 +10,7 @@ Built with Python, Streamlit, and Gemini AI.
 ---
 
 Live Demo
-[Streamlit Cloud link after deployment]
+[https://stock-analysis-india.streamlit.app]
 
 ---
 
