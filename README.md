@@ -121,6 +121,7 @@ Gemini AI generates market summary and trend explanation
 ⬇️
 
 Interactive dashboard displays everything visually
+
 ---
 ⚠️ Limitations
 
