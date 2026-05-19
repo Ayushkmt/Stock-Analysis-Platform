@@ -1,50 +1,65 @@
-def build_Prompt(Ticker, current_price, rsi, macd, forecast_price, feature_importance):
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+import google.generativeai as genai
+
+# Load .env from project root
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent / '.env')
+
+# Configure Gemini
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+def build_prompt(ticker, current_price, rsi, macd, forecast_price, feature_importance):
     prompt = f"""
-    You are a stock market analyst. 
-    
-    Analyze the following data for {Ticker}:
-    - Current Price: ₹{current_price}
+    You are a stock market analyst.
+
+    Analyze the following data for {ticker}:
+    - Current Price: ₹{current_price:.2f}
     - RSI: {rsi:.2f}
     - MACD: {macd:.2f}
     - Forecasted Price for Tomorrow: ₹{forecast_price}
     - Most Influential Indicator: {feature_importance}
-    
+
     Provide:
-    1. A Brief market summary based on the indicators.
+    1. A brief market summary based on the indicators.
     2. What the trend suggests (bullish, bearish, or neutral).
-    3. Disclaimer that this is not financial advice and to do their own research.
-    
-    Keep the analysis concise (2-3 sentences) and easy to understand for a general audience.
-    
+    3. A disclaimer that this is not financial advice and markets are unpredictable.
+
+    Keep it concise and easy to understand. Use simple language.
     """
     return prompt
 
+
 def generate_insights(ticker, current_price, rsi, macd, forecast_price, feature_importance):
     """
-    Generates AI market insights.
-    Currently returns a mock response.
-    Gemini API will be swapped in here later — one function change.
+    Generates AI market insights using Gemini API.
+    Falls back to mock response if API call fails.
     """
-    prompt = build_Prompt(ticker, current_price, rsi, macd, forecast_price, feature_importance)
+    try:
+        prompt = build_prompt(
+            ticker, current_price, rsi,
+            macd, forecast_price, feature_importance
+        )
 
-    # --- MOCK RESPONSE (Gemini swap goes here later) ---
-    mock_response = f"""
-    **Market Summary:**
-    {ticker} is currently trading at ₹{current_price:.2f}. 
-    Based on technical indicators, the stock shows moderate activity 
-    with RSI at {rsi:.2f} suggesting neutral momentum.
+        response = model.generate_content(prompt)
+        return response.text
 
-    **Trend Analysis:**
-    The MACD value of {macd:.2f} and the dominance of {feature_importance} 
-    as the key indicator suggest a cautiously bullish outlook. 
-    Forecasted price for tomorrow is ₹{forecast_price}.
+    except Exception as e:
+        # Fallback mock response if API fails
+        return f"""
+        **Market Summary:**
+        {ticker} is currently trading at ₹{current_price:.2f}.
+        RSI at {rsi:.2f} suggests neutral momentum.
 
-    **Disclaimer:**
-    This analysis is for educational purposes only and does not 
-    constitute financial advice. Stock markets are inherently unpredictable. 
-    Always do your own research before making investment decisions.
-    """
-    return mock_response
+        **Trend Analysis:**
+        Forecasted price for tomorrow is ₹{forecast_price}.
 
+        **Disclaimer:**
+        This analysis is for educational purposes only.
+        Not financial advice. Always do your own research.
+
+        _(AI insights unavailable: {str(e)})_
+        """
 
 
