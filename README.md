@@ -98,23 +98,30 @@ streamlit run app/main.py
 * Model performance varies by stock volatility and sector sensitivity.
 * Banking stocks are more sensitive to macro factors like RBI policy.
 
----
+Working Flow-Chart
 
-Working Flow-Chart:
-User inputs ticker
-↓
-Yfinance fetches 5 years of live data
-↓
-Technical indicators calculated (SMA, EMA, RSI, MACD)
-↓
-Random Forest model trained and forecasts next day price
-↓
+🔍 User inputs a stock ticker (e.g. RELIANCE.NS)
+
+⬇️
+
+Yfinance fetches 5 years of live NSE data
+
+⬇️
+
+📊 Technical indicators calculated (SMA, EMA, RSI, MACD)
+
+⬇️
+
+🤖 Random Forest model trained and forecasts next day price
+
+⬇️
+
 Gemini AI generates market summary and trend explanation
-↓
-Interactive dashboard displays everything
 
+⬇️
+
+Interactive dashboard displays everything visually
 ---
-
 ⚠️ Limitations
 
 - ML model provides trend direction, not guaranteed price prediction
