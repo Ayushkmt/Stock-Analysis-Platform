@@ -16,7 +16,7 @@ Live Demo
 
 Features :
 
-Live Indian Stock Data — Real-time data via yfinance API (NSE)
+Live Indian Stock Data — Real-time data via Yfinance API (NSE)
 - 📊 Interactive Charts — Candlestick with SMA overlays, RSI, MACD
 - 📉 Technical Indicators — SMA, EMA, RSI, MACD
 - 🤖 ML Forecasting — Random Forest model trained on 5 years of data
@@ -31,8 +31,8 @@ Tech Stack
 | Layer | Technology |
 |---|---|
 | Frontend | Streamlit |
-| Data | yfinance, pandas, numpy |
-| ML | scikit-learn (Random Forest) |
+| Data | Yfinance, pandas, numpy |
+| ML | Scikit-learn (Random Forest) |
 | Visualization | Plotly |
 | AI Insights | Google Gemini 2.5 Flash API |
 | Language | Python 3.9+ |
@@ -45,19 +45,19 @@ Project Structure
 stock-analysis-platform/
 │
 ├── app/
-│   ├── main.py              # Streamlit entry point
+│   ├── main.py              --> Streamlit entry point
 │   ├── data/
-│   │   └── fetcher.py       # Live stock data via yfinance
+│   │   └── fetcher.py       --> Live stock data via yfinance
 │   ├── indicators/
-│   │   └── technical.py     # SMA, EMA, RSI, MACD
+│   │   └── technical.py     --> SMA, EMA, RSI, MACD
 │   ├── models/
-│   │   └── forecaster.py    # Random Forest forecasting
+│   │   └── forecaster.py    --> Random Forest forecasting
 │   ├── ai/
-│   │   └── insights.py      # Gemini AI market insights
+│   │   └── insights.py      --> Gemini AI market insights
 │   └── ui/
-│       └── charts.py        # Plotly chart builders
+│       └── charts.py        --> Plotly chart builders
 │
-├── .env                     # API keys (never committed)
+├── .env                     --> API keys (never committed)
 ├── requirements.txt
 └── README.md
 ```
@@ -112,6 +112,8 @@ Random Forest model trained and forecasts next day price
 Gemini AI generates market summary and trend explanation
 ↓
 Interactive dashboard displays everything
+
+---
 
 ⚠️ Limitations
 
