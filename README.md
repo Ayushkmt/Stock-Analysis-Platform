@@ -26,7 +26,7 @@ Live Indian Stock Data — Real-time data via yfinance API (NSE)
 
 ---
 
-🛠️Tech Stack
+Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -38,8 +38,10 @@ Live Indian Stock Data — Real-time data via yfinance API (NSE)
 | Language | Python 3.9+ |
 
 ---
-📁 Project Structure
 
+Project Structure
+
+```
 stock-analysis-platform/
 │
 ├── app/
@@ -58,7 +60,7 @@ stock-analysis-platform/
 ├── .env                     # API keys (never committed)
 ├── requirements.txt
 └── README.md
-
+```
 ---
 
 ⚙️ Setup & Installation
