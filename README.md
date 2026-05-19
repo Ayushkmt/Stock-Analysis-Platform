@@ -97,7 +97,8 @@ streamlit run app/main.py
 
 * Model performance varies by stock volatility and sector sensitivity.
 * Banking stocks are more sensitive to macro factors like RBI policy.
-
+  
+---
 Working Flow-Chart
 
 🔍 User inputs a stock ticker (e.g. RELIANCE.NS)
@@ -131,7 +132,6 @@ Interactive dashboard displays everything visually
 - Stock splits may affect historical data consistency
 
 ---
-
 Author:
 **Ayush Kamat**  
 [GitHub](https://github.com/Ayushkmt) | [LinkedIn](your-linkedin-url)
