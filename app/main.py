@@ -15,22 +15,23 @@ st.markdown("""
             background: var(--background-color);
         }
 
-        /* Targets light mode users only */
-        @media (prefers-color-scheme: light) {
-            .stApp {
-                background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            }
-            .main-header, .metric-card {
-                background: rgba(255, 255, 255, 0.85);
-                backdrop-filter: blur(10px);
-            }
+         /* Targets Streamlit's specific light theme state */
+        [data-theme="light"] .stApp {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%) !important;
+        }
+        
+        [data-theme="light"] .main-header, 
+        [data-theme="light"] .metric-card {
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
         
         .main-header {
             background: background: var(--secondary-background-color);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
             text-align: center;
         }
