@@ -50,7 +50,7 @@ st.markdown("""
 st.markdown("""
     <div class='main-header'>
         <h1>📈 Stock Analysis Platform</h1>
-        <p style='color: #666; font-size: 1.1rem;'>
+        <p style='color: var(--text-color); font-size: 1.1rem;Opacity: 0.8;'>
             AI-powered stock analysis and forecasting for Indian markets (NSE)
         </p>
     </div>
