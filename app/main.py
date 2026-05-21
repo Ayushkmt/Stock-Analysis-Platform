@@ -15,8 +15,9 @@ st.markdown("""
             background: var(--background-color);
         }
 
-         /* Targets Streamlit's specific light theme state */
-        [data-theme="light"] .stApp {
+        /* Forces the background on Streamlit's structural layout wrappers */
+        [data-theme="light"] .stAppViewContainer,
+        [data-theme="light"] .stMainViewContainer {
             background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%) !important;
         }
         
@@ -189,6 +190,7 @@ if analyse_button:
 
             # --- Disclaimer ---
             st.warning("⚠️ This platform is for educational purposes only. Not a financial advice. Always do your own research.")
+            
             
             
             
