@@ -7,12 +7,55 @@ from ai.insights import generate_insights
 
 st.set_page_config(page_title="Stock Analysis Platform", layout="wide")
 
+# Custom CSS
+st.markdown("""
+    <style>
+        .stApp {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .main-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .stButton>button {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .stButton>button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("📈 Stock Analysis Platform")
 st.markdown("""
-Welcome to the **Stock Analysis Platform** — an AI-powered dashboard for Indian stock markets (NSE).
-
-Select a stock from the sidebar or enter a custom ticker to get started.
-""")
+    <div class='main-header'>
+        <h1>📈 Stock Analysis Platform</h1>
+        <p style='color: #666; font-size: 1.1rem;'>
+            AI-powered stock analysis and forecasting for Indian markets (NSE)
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
 st.info("""
 **What this platform provides:**
