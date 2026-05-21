@@ -47,7 +47,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📈 Stock Analysis Platform")
 st.markdown("""
     <div class='main-header'>
         <h1>📈 Stock Analysis Platform</h1>
