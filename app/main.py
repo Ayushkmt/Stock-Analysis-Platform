@@ -11,11 +11,11 @@ st.set_page_config(page_title="Stock Analysis Platform", layout="wide")
 st.markdown("""
     <style>
         .stApp {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--background-color);
         }
         
         .main-header {
-            background: white;
+            background: background: var(--secondary-background-color);
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -23,11 +23,17 @@ st.markdown("""
             text-align: center;
         }
         
+        * Ensures headers inside the container use the proper theme color */
+        .main-header h1 {
+            color: var(--text-color);
+        }
+        
         .metric-card {
-            background: white;
+            background: var(--secondary-background-color);
             padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(128, 128, 128, 0.1);
         }
 
         .stButton>button {
@@ -170,6 +176,7 @@ if analyse_button:
 
             # --- Disclaimer ---
             st.warning("⚠️ This platform is for educational purposes only. Not a financial advice. Always do your own research.")
+            
             
             
             
