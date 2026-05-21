@@ -8,6 +8,25 @@ from ai.insights import generate_insights
 st.set_page_config(page_title="Stock Analysis Platform", layout="wide")
 
 st.title("📈 Stock Analysis Platform")
+st.markdown("""
+Welcome to the **Stock Analysis Platform** — an AI-powered dashboard for Indian stock markets (NSE).
+
+Select a stock from the sidebar or enter a custom ticker to get started.
+""")
+
+st.info("""
+**What this platform provides:**
+📊 Live stock data and interactive charts 
+📉 Technical indicators — SMA, EMA, RSI, MACD
+🤖 ML-based next day price forecast
+💡 AI generated market insights via Gemini
+🔎 Explainable predictions with feature importance
+""")
+
+st.warning("⚠️ For educational purposes only. Not financial advice.")
+
+st.markdown("---")
+
 st.sidebar.header("Configuration")
 st.sidebar.subheader("Quick Select")
 quick_select = st.sidebar.selectbox(
@@ -109,6 +128,7 @@ if analyse_button:
 
             # --- Disclaimer ---
             st.warning("⚠️ This platform is for educational purposes only. Not a financial advice. Always do your own research.")
+            
             
             
             
