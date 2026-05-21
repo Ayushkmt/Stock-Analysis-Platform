@@ -10,8 +10,20 @@ st.set_page_config(page_title="Stock Analysis Platform", layout="wide")
 # Custom CSS
 st.markdown("""
     <style>
+        /* Base dark mode fallback / global default */
         .stApp {
             background: var(--background-color);
+        }
+
+        /* Targets light mode users only */
+        @media (prefers-color-scheme: light) {
+            .stApp {
+                background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            }
+            .main-header, .metric-card {
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(10px);
+            }
         }
         
         .main-header {
